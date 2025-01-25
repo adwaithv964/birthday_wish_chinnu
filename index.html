@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Chinnu</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, #121212, #1e1e2f);
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        .birthday-wish {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            animation: fadeInText 3s ease-in-out infinite;
+        }
+
+        @keyframes fadeInText {
+            0%, 100% {
+                opacity: 0.2;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .balloon {
+            width: 50px;
+            height: 70px;
+            background-color: #ff6347;
+            border-radius: 50%;
+            position: absolute;
+            animation: float 7s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+
+        .animated-image {
+            width: 200px;
+            height: 200px;
+            background: url('\whatsApp.jpg') no-repeat center/cover;
+            margin: 1rem 0;
+            border-radius: 10px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+            background-size: 10px 10px;
+            animation: twinkle 3s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            from {
+                opacity: 0.5;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .confetti {
+            width: 10px;
+            height: 10px;
+            background-color: #ff69b4;
+            position: absolute;
+            animation: fall 5s linear infinite;
+            border-radius: 50%;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        .btn {
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff5733;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            z-index: 10;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Mobile responsiveness */
+        @media only screen and (max-width: 600px) {
+            .birthday-wish {
+                font-size: 1.5rem;
+            }
+
+            .animated-image {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="container">
+        <div class="birthday-wish">🎉 Happy Birthday Chinnu! 🎉</div>
+        <div class="animated-image"></div>
+        <button class="btn" onclick="playSong()">Play Birthday Song 🎶</button>
+    </div>
+
+    <script>
+        // Balloons animation
+        function createBalloons() {
+            for (let i = 0; i < 15; i++) {
+                const balloon = document.createElement('div');
+                balloon.classList.add('balloon');
+                balloon.style.left = Math.random() * 100 + 'vw';
+                balloon.style.animationDelay = Math.random() * 5 + 's';
+                balloon.style.backgroundColor = getRandomColor();
+                document.body.appendChild(balloon);
+            }
+        }
+
+        function createConfetti() {
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                confetti.style.backgroundColor = getRandomColor();
+                document.body.appendChild(confetti);
+            }
+        }
+
+        function getRandomColor() {
+            const colors = ['#ff6347', '#ffa500', '#ff69b4', '#add8e6', '#90ee90'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        // Play song
+        function playSong() { 
+            const audio = new Audio('\happy_birthday_to_you_bossa_nova.mp3');
+            audio.play();
+        }
+
+        // Initiate balloons and confetti on load
+        createBalloons();
+        createConfetti();
+    </script>
+</body>
+</html>
